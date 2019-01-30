@@ -2,7 +2,7 @@ import java.io.*;
 
 public class PRU04E04_Ivan_Cabellos2 {
 
-    private static DataInputStream dis;
+    private static InputStream dis;
 
     public static void main(String[] args) {
 
@@ -17,9 +17,9 @@ public class PRU04E04_Ivan_Cabellos2 {
 
     }
 
-    public static DataInputStream devolverFichero (){
+    public static InputStream devolverFichero (){
         try {
-            dis = new DataInputStream(new FileInputStream("tdpack5.bin"));
+            dis = new DataInputStream(new FileInputStream("moto-png"));
 
             return dis;
 
