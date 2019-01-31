@@ -1,25 +1,18 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PRU04E04_Ivan_Cabellos2 {
 
-    private static InputStream dis;
+    private static InputStream dis = devolverFichero();
 
     public static void main(String[] args) {
-
-        dis = devolverFichero();
-        try {
-            assert dis != null;
-            System.out.print((char) dis.read());
-
-        } catch (IOException e){
-            System.err.println();
-        }
-
+        devuelveByteList();
     }
 
     public static InputStream devolverFichero (){
         try {
-            dis = new DataInputStream(new FileInputStream("moto-png"));
+            dis = new DataInputStream(new FileInputStream("moto.png"));
 
             return dis;
 
@@ -27,6 +20,36 @@ public class PRU04E04_Ivan_Cabellos2 {
             System.err.println();
         }
         return null;
+    }
+
+    public static byte[] devuelveByteList(){
+
+        ArrayList<Byte> bytesFichero = new ArrayList<>();
+
+
+        try {
+            byte byt = (byte)dis.read();
+            while (byt != -1){
+
+                bytesFichero.add(byt);
+                byt = (byte)dis.read();
+            }
+
+            byte[] arrayBytes = new byte[bytesFichero.size()];
+
+            for (int i = 0; i < arrayBytes.length; i++) {
+                arrayBytes[i] = bytesFichero.get(i);
+            }
+
+            System.out.println(Arrays.toString(arrayBytes));
+            return arrayBytes;
+
+        } catch (IOException e){
+            System.err.println();
+        }
+
+        return new byte[0];
+
     }
 
 }
